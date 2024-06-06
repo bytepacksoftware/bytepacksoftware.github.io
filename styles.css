@@ -1,0 +1,164 @@
+/* Global Styles */
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #1e88e5;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.header-text {
+    display: flex;
+    align-items: center;
+}
+
+.header-text img {
+    margin-right: 20px;
+    border-radius: 50%;
+}
+
+.header-text h1 {
+    margin: 0;
+    font-size: 36px;
+    color: #333;
+}
+
+.header-text p {
+    margin: 5px 0;
+    font-size: 18px;
+    color: #777;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #e0e0e0;
+}
+
+.overview, .features {
+    padding: 20px 0;
+}
+
+.overview h2, .features h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #444;
+}
+
+.overview p, .features p {
+    margin-bottom: 10px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.features ul {
+    padding-left: 20px;
+    color: #555;
+}
+
+.features ul li {
+    margin-bottom: 10px;
+}
+
+.screenshot {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.screenshot img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.screenshot p {
+    font-style: italic;
+    color: #777;
+}
+
+.paypal-section, .download-section {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.paypal-section h2, .download-section h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+    color: #444;
+}
+
+.paypal-section p {
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.paypal-section .price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #e53935;
+}
+
+.paypal-section form button {
+    background: none;
+    border: none;
+}
+
+.paypal-section form img {
+    transition: transform 0.3s;
+}
+
+.paypal-section form img:hover {
+    transform: scale(1.05);
+}
+
+.download-section table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+.download-section table td {
+    padding: 15px;
+    border: 1px solid #e0e0e0;
+}
+
+.download-section table td a {
+    font-weight: bold;
+    color: #1e88e5;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #f5f5f5;
+    color: #777;
+}
+
+footer a {
+    color: #1e88e5;
+}
