@@ -10,6 +10,77 @@
 <link href="i1.png" rel="icon" sizes="200x200" type="image/png">
 <link href="styles.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* Add the chat widget styles */
+.chat-widget {
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    z-index: 1000;
+}
+
+.chat-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.chat-content {
+    display: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    background-color: white;
+    width: 90%;
+    max-width: 400px;
+    position: fixed;
+    bottom: 70px;
+    right: 15px;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.chat-header {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.chat-body {
+    padding: 10px;
+}
+
+.chat-body input,
+.chat-body textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.chat-body textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+.chat-body button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+</style>
 </head>
 <body>
 <div class="container">
@@ -41,7 +112,7 @@
             <li><strong>Packing :</strong> Pack your confidential files easily by supporting all types of file formats, just keep in mind the password you have created for your Packed files. If you forget the password, your packaged files will not be able to be unpacked forever.</li>
             <p><i>If you want to automatically back up the password you have created for each of your packaged files, you can register by purchasing the <b>Registration key</b> listed below.</i></p>
             <li><strong>Unpack :</strong> Unpack your files securely with the password you have created and remember to keep them in a safe place.</li>
-            <li><b style="color: red;">REGISTERED </b><strong>Password Backup :</strong> BytePack has an additional feature to automatically backup passwords that users have created to our server system <em>(this feature can only be used by registered users)</em>.</li>
+            <li><strong>Password Backup :</strong> BytePack has an additional feature to automatically backup passwords that users have created to our server system <em>(this feature can only be used by registered users)</em>.</li>
         </ul>
     </section>
     <div class="paypal-section">
@@ -64,27 +135,86 @@
             </tr>
         </table>
     </div>
-    <footer>
-        <p>© 2024 <a href="./index.html">BytePack Software</a>. Ari Sohandri Putra.</p>
-        <p>Email: <a href="mailto:bytepacksales@hotmail.com">bytepacksales@hotmail.com</a></p>
-        <p>WhatsApp: <a href="https://wa.me/6281353561716">+6281353561716</a></p>
-        <p><a href="license.html">BytePack Software Terms</a></p>
-        <div class="clients">
+    <div class="clients">
             <h2>Our Registered Clients</h2>
             <p>
-                <a href="https://www.kalogistics.co.id/" target="_blank">
-                    <img src="kai.png" alt="KAI Logistik" width="100" height="100">
-                </a>
                  <a href="https://wika.co.id/en" target="_blank">
                     <img src="wika.png" alt="Wika Jaya Karya" width="100" height="100">
                 </a>
                  <a href="https://lotimmedicalcenter.com/" target="_blank">
                     <img src="lmc.png" alt="Lotim Medical Center" width="100" height="100">
                 </a>
-                 
+                  <a href="https://www.rsiakuncupbungaselong.id/" target="_blank">
+                    <img src="kb.png" alt="RSIA Kuncup Bunga" width="100" height="100">
+                </a>
+                <a href="https://jcodonuts.com/" target="_blank">
+                    <img src="jco.png" alt="J.Co Donuts" width="100" height="100">
+                </a>
             </p>
         </div>
+    <footer>
+        <p>© 2024 <a href="./index.html">BytePack Software</a>. Ari Sohandri Putra.</p>
+        <p>Email: <a href="mailto:bytepacksales@hotmail.com">bytepacksales@hotmail.com</a></p>
+        <p>WhatsApp: <a href="https://wa.me/6281353561716">+6281353561716</a></p>
+        <p><a href="license.html">BytePack Software Terms</a></p>
     </footer>
+<!-- Chat widget -->
+<div class="chat-widget">
+    <button class="chat-button" onclick="toggleChat()">Chat with us</button>
+    <div class="chat-content" id="chatContent">
+        <div class="chat-header">
+            <h4>Contact Us</h4>
+        </div>
+        <div class="chat-body">
+            <form id="chatForm" action="send_email.php" method="post">
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send</button>
+            </form>
+            <div class="message" id="formMessage"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+function toggleChat() {
+    var chatContent = document.getElementById('chatContent');
+    if (chatContent.style.display === 'none' || chatContent.style.display === '') {
+        chatContent.style.display = 'block';
+    } else {
+        chatContent.style.display = 'none';
+    }
+}
+
+function sendChatForm(event) {
+    event.preventDefault();
+    var form = document.getElementById('chatForm');
+    var formData = new FormData(form);
+
+    fetch('send_email.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.text())
+    .then(data => {
+        var messageDiv = document.getElementById('formMessage');
+        messageDiv.style.display = 'block';
+        messageDiv.textContent = data;
+        if (data.includes('successfully')) {
+            messageDiv.style.color = 'green';
+            form.reset();
+        } else {
+            messageDiv.style.color = 'red';
+        }
+    })
+    .catch(error => {
+        var messageDiv = document.getElementById('formMessage');
+        messageDiv.style.display = 'block';
+        messageDiv.textContent = 'There was an error sending your message. Please try again later.';
+        messageDiv.style.color = 'red';
+    });
+}
+</script>
 </div>
 </body>
 </html>

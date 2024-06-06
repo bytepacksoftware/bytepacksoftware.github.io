@@ -126,6 +126,7 @@ hr {
 .paypal-section form button {
     background: none;
     border: none;
+    cursor: pointer;
 }
 
 .paypal-section form img {
